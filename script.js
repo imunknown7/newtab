@@ -35,3 +35,19 @@ searchInput.addEventListener("keydown", function (event) {
     window.location.href = url;
   }
 });
+
+// NASA APOD BACKGROUND
+
+const background = document.querySelector(".background");
+background.style.backgroundImage = "url('backgrounds/defaultbg.jpg')";
+
+fetch(`https://api.nasa.gov/planetary/apod?api_key=pvidCKfvbcTQOPGd1CI1G6FGfOjjvKk9hc8kH2xc`)
+  .then((response) => response.json())
+  .then((data) => {
+    if (data.media_type === "image") {
+      background.style.backgroundImage = `url(${data.hdurl || data.url})`;
+    }
+  })
+  .catch((error) => {
+    console.error(error);
+  });
