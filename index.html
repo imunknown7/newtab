@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>New Tab</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- background -->
+    <div class="background"></div>
+    <!-- to be worked on later -->
+
+    <!-- main content -->
+    <main class="hero">
+      <section class="clock-section">
+        <h1 id="clock">00:00</h1>
+
+        <p id="date">Tuesday, July 14</p>
+      </section>
+
+      <!-- search -->
+      <section class="search-section">
+        <div class="search-container">
+          <!-- search engine -->
+          <button id="engine-button">
+            <img id="engine-icon" src="icons/google.svg" alt="Search Engine" />
+          </button>
+
+          <!-- search box -->
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search the web..."
+          />
+
+          <!-- search engine dropdown -->
+          <div id="engine-dropdown" class="dropdown hidden">
+            <!-- to be worked on -->
+          </div>
+        </div>
+
+        <!-- fav websites -->
+
+        <div class="favorites">
+          <a href="https://github.com" class="favorite">
+            <i class="fa-brands fa-github"></i>
+            <span>GitHub</span>
+          </a>
+
+          <a href="https://youtube.com" class="favorite">
+            <i class="fa-brands fa-youtube"></i>
+            <span>YouTube</span>
+          </a>
+
+          <a href="https://reddit.com" class="favorite">
+            <i class="fa-brands fa-reddit-alien"></i>
+            <span>Reddit</span>
+          </a>
+
+          <a href="https://gmail.com" class="favorite">
+            <i class="fa-solid fa-envelope"></i>
+            <span>Gmail</span>
+          </a>
+
+          <a href="https://notion.so" class="favorite">
+            <i class="fa-solid fa-note-sticky"></i>
+            <span>Notion</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
