@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>New Tab</title>
+    <link rel="icon" href="icons/search.png" type="image/png">
 
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,7 +24,14 @@
   <body>
     <!-- background -->
     <div class="background"></div>
-    <!-- to be worked on later -->
+    <a
+      class="apod-button"
+      href="https://apod.nasa.gov/apod/astropix.html"
+      target="_blank"
+      title="view info about the background"
+    >
+      <i class="fa-solid fa-circle-info"></i>
+    </a>
 
     <!-- main content -->
     <main class="hero">
@@ -50,7 +58,25 @@
 
           <!-- search engine dropdown -->
           <div id="engine-dropdown" class="dropdown hidden">
-            <!-- to be worked on -->
+            <button class="engine-option" data-engine="google">
+              <img src="icons/google.svg" alt="Google" />
+              <span>Google</span>
+            </button>
+
+            <button class="engine-option" data-engine="duckduckgo">
+              <img src="icons/duckduckgo.svg" alt="DuckDuckGo" />
+              <span>DuckDuckGo</span>
+            </button>
+
+            <button class="engine-option" data-engine="brave">
+              <img src="icons/brave.svg" alt="Brave" />
+              <span>Brave</span>
+            </button>
+
+            <button class="engine-option" data-engine="startpage">
+              <img src="icons/startpage.svg" alt="Startpage" />
+              <span>Startpage</span>
+            </button>
           </div>
         </div>
 
@@ -85,6 +111,9 @@
       </section>
     </main>
 
+<!-- adding a settings panel to switch themes and all and stuff-->
+
     <script src="script.js"></script>
+    
   </body>
 </html>
