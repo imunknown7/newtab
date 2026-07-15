@@ -33,4 +33,4 @@ get rid of your boring, lifeless and default newtab page. this is a functional n
 2. [gnews api](https://gnews.io/)
 
 ---
-<div align="right">This text will move to the right side.</div>
+<div align="right">made by dynamo</div>
