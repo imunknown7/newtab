@@ -32,5 +32,7 @@ get rid of your boring, lifeless and default newtab page. this is a functional n
 1. [apod from nasa](https://apod.nasa.gov/apod/astropix.html)
 2. [gnews api](https://gnews.io/)
 
+## screenshots and videos
+
 ---
-<div align="right">made by dynamo</div>
+<div align="right">- made by dynamo</div>

@@ -1,3 +1,9 @@
+// light and dark theme
+
+const savedTheme = localStorage.getItem("theme") || "dark";
+
+document.body.classList.add(savedTheme);
+
 // live clock and date
 
 const clock = document.getElementById("clock");
@@ -21,7 +27,7 @@ function updateClock() {
 updateClock();
 setInterval(updateClock, 1000);
 
-// NASA APOD BACKGROUND
+// nasa apod background
 
 const background = document.querySelector(".background");
 background.style.backgroundImage = "url('backgrounds/defaultbg.jpg')";
@@ -110,7 +116,6 @@ searchInput.addEventListener("keydown", (e) => {
   window.open(url, "_blank");
 });
 
-
 // search box focus
 
 searchInput.addEventListener("focus", () => {
@@ -119,4 +124,139 @@ searchInput.addEventListener("focus", () => {
 
 searchInput.addEventListener("blur", () => {
   document.body.classList.remove("search-active");
+});
+
+// settings panel works and accents
+const settingsButton = document.getElementById("settings-button");
+
+const settingsPanel = document.getElementById("settings-panel");
+
+settingsButton.addEventListener("click", () => {
+  settingsPanel.classList.toggle("hidden");
+});
+
+document.querySelectorAll(".accent").forEach((button) => {
+  button.addEventListener("click", () => {
+    document.documentElement.style.setProperty(
+      "--accent",
+      button.dataset.color
+    );
+
+    localStorage.setItem("accent", button.dataset.color);
+  });
+});
+
+const accent = localStorage.getItem("accent");
+
+if (accent) {
+  document.documentElement.style.setProperty("--accent", accent);
+}
+
+const themeButtons = document.querySelectorAll(".theme-btn");
+
+themeButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const theme = button.dataset.theme;
+
+    document.body.classList.remove("dark", "light");
+
+    document.body.classList.add(theme);
+
+    localStorage.setItem("theme", theme);
+  });
+});
+
+// news section
+
+const newsContainer = document.getElementById("news-container");
+
+const newsTabs = document.querySelectorAll(".news-tab");
+
+const API_KEY = "7c45c4dc5b53ff03b4aabbb890d066b2";
+
+function loadNews(category = "general") {
+  newsContainer.innerHTML = "";
+
+  fetch(
+    `https://gnews.io/api/v4/top-headlines?lang=en&country=in&category=${category}&max=9&apikey=${API_KEY}`
+  )
+    .then((response) => response.json())
+
+    .then((data) => {
+      if (!data.articles || data.articles.length === 0) {
+        newsContainer.innerHTML = `
+                <p style="color:var(--text-muted);">
+                    No news available.
+                </p>
+            `;
+
+        return;
+      }
+
+      data.articles.forEach((article) => {
+        const publishDate = new Date(article.publishedAt);
+
+        const formattedDate = publishDate.toLocaleDateString([], {
+          month: "short",
+          day: "numeric",
+        });
+
+        const card = document.createElement("a");
+
+        card.className = "news-card";
+
+        card.href = article.url;
+
+        card.target = "_blank";
+        card.rel = "noopener noreferrer";
+
+        card.innerHTML = `
+                <img src="${
+                  article.image || "backgrounds/newspaper.jpg"
+                }" alt="News Image">
+
+                <div class="news-content">
+
+                    <h3>${article.title}</h3>
+
+                    <p>${
+                      article.description || "Click to read the full article."
+                    }</p>
+
+                    <div class="news-footer">
+
+                        <i class="fa-regular fa-newspaper"></i>
+
+                        ${article.source.name} • ${formattedDate}
+
+                    </div>
+
+                </div>
+            `;
+
+        newsContainer.appendChild(card);
+      });
+    })
+
+    .catch((error) => {
+      console.error("GNews Error:", error);
+
+      newsContainer.innerHTML = `
+            <p style="color:red;">
+                Failed to load news.
+            </p>
+        `;
+    });
+}
+
+loadNews();
+
+newsTabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    document.querySelector(".news-tab.active").classList.remove("active");
+
+    tab.classList.add("active");
+
+    loadNews(tab.dataset.category);
+  });
 });
