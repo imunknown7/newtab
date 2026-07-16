@@ -261,7 +261,35 @@ newsTabs.forEach((tab) => {
   });
 });
 
-
+// had to use proxy api cuz i hosted this site in github
 // fetch(
 //   `https://gnews.io/api/v4/top-headlines?lang=en&country=in&category=${category}&max=9&apikey=${API_KEY}`
 // )
+
+// keyboard shortcuts
+document.addEventListener("keydown", (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+    e.preventDefault();
+    searchInput.focus();
+    searchInput.select();
+    return;
+  }
+  if (
+    e.key === "/" &&
+    document.activeElement !== searchInput &&
+    !e.ctrlKey &&
+    !e.metaKey &&
+    !e.altKey
+  ) {
+    e.preventDefault();
+
+    searchInput.focus();
+
+    return;
+  }
+
+  if (e.key === "Escape") {
+    searchInput.value = "";
+    searchInput.blur();
+  }
+});
