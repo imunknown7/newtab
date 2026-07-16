@@ -178,7 +178,7 @@ function loadNews(category = "general") {
   newsContainer.innerHTML = "";
 
   fetch(
-    `https://gnews.io/api/v4/top-headlines?lang=en&country=in&category=${category}&max=9&apikey=${API_KEY}`
+    `https://corsproxy.io/?https://gnews.io/api/v4/top-headlines?lang=en&country=in&category=${category}&max=9&apikey=${API_KEY}`
   )
     .then((response) => response.json())
 
@@ -260,3 +260,8 @@ newsTabs.forEach((tab) => {
     loadNews(tab.dataset.category);
   });
 });
+
+
+// fetch(
+//   `https://gnews.io/api/v4/top-headlines?lang=en&country=in&category=${category}&max=9&apikey=${API_KEY}`
+// )
